@@ -1,0 +1,29 @@
+import example.*
+
+test "Gimenez le paga el sueldo a sus empleado por vender 5 docenas de empanadas"{
+	baigorria.empandasVendidas(5*12)
+	gimenez.pagarA(baigorria)
+	gimenez.pagarA(galvan)
+	assert.equals(150*(5*12), baigorria.sueldo())
+}
+
+test "Galvan en el mes"{
+	galvan.gastarDinero(40000)
+	assert.equals(0, galvan.dinero())
+	assert.equals(40000, galvan.totalDeuda())
+	galvan.gastarDinero(80000)
+	assert.equals(0, galvan.dinero())
+	assert.equals(120000, galvan.totalDeuda())
+	galvan.cobrarSueldo()
+	galvan.pagarDeuda()
+	assert.equals(30000, galvan.dinero())
+	assert.equals(0, galvan.totalDeuda())
+	galvan.gastarDinero(250000)
+	galvan.pagarDeuda()
+	assert.equals(0, galvan.dinero())
+	assert.equals(220000, galvan.totalDeuda())	
+	galvan.cobrarSueldo()
+	galvan.pagarDeuda()
+	assert.equals(0, galvan.dinero())
+	assert.equals(70000, galvan.totalDeuda())
+}
